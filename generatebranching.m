@@ -20,7 +20,7 @@ exportColumbusGeometry[printdir_,filename_,geometry_List]:=
 					PaddedForm[Part[Part[geometry,1],2],{10,8},ExponentFunction->(Null&)],
 					PaddedForm[Part[Part[geometry,1],3],{10,8},ExponentFunction->(Null&)],
 					PaddedForm[ElementData["Nitrogen","AtomicWeight"],{10,8}]]]];
-                       WriteString[cstream,StringJoin[
+               WriteString[cstream,StringJoin[
 				" ","C",
 				"  ",ToString[PaddedForm[ElementData["Carbon","AtomicNumber"],{3,1}]]],
 				"  ",ToString[StringForm["``  ``  ``  ``\n",
@@ -28,9 +28,9 @@ exportColumbusGeometry[printdir_,filename_,geometry_List]:=
 					PaddedForm[Part[Part[geometry,2],2],{10,8},ExponentFunction->(Null&)],
 					PaddedForm[Part[Part[geometry,2],3],{10,8},ExponentFunction->(Null&)],
 					PaddedForm[ElementData["Carbon","AtomicWeight"],{10,8}]]]];
-		For[i=3,i<=7,i++,
+	       For[i=3,i<=7,i++,
 			WriteString[cstream,StringJoin[
-                       " ","H",
+                                 " ","H",
 				"  ",ToString[PaddedForm[ElementData["Hydrogen","AtomicNumber"],{3,1}]]],
 				"  ",ToString[StringForm["``  ``  `` ``\n",
 					PaddedForm[Part[Part[geometry,i],1],{10,8},ExponentFunction->(Null&)],
@@ -43,13 +43,13 @@ exportColumbusGeometry[printdir_,filename_,geometry_List]:=
 
 (* ::Input::Initialization:: *)
 generategeom2[initial_,displacement_,numberofgeometry_]:=
-Module[{initialgeom,dispvector,i,inter},
-initialgeom=Import[initial,"Table"];
-dispvector=Import[displacement,"Table"];
-For[i=1,i<=numberofgeometry,i++,
-inter=initialgeom+dispvector;
-exportColumbusGeometry[NotebookDirectory[],"geomp"<>ToString[i],inter];
-initialgeom=inter;]
+             Module[{initialgeom,dispvector,i,inter},
+                    initialgeom=Import[initial,"Table"];
+                    dispvector=Import[displacement,"Table"];
+                    For[i=1,i<=numberofgeometry,i++,
+                        inter=initialgeom+dispvector;
+                        exportColumbusGeometry[NotebookDirectory[],"geomp"<>ToString[i],inter];
+                        initialgeom=inter;]
 ];
 
 
